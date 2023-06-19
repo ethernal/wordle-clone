@@ -1,0 +1,106 @@
+{
+    "sourceFile": "src/components/AnswerInput/AnswerInput.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 22,
+            "patches": [
+                {
+                    "date": 1687069071474,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1687069680409,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,9 @@\n-import React from 'react';\n+import React, { useState } from 'react';\n \n function AnswerInput() {\n+\tconst [answer, setAnswer] = useState();\n+\n \treturn (\n \t\t<form class=\"guess-input-wrapper\">\n \t\t\t<label for=\"guess-input\">Enter guess:</label>\n \t\t\t<input id=\"guess-input\" type=\"text\" />\n"
+                },
+                {
+                    "date": 1687069737979,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,12 +2,17 @@\n \n function AnswerInput() {\n \tconst [answer, setAnswer] = useState();\n \n+  const handleAnswerChange = (answer) => {\n+    setAnswer(answer);\n+    console.log(answer)\n+  }\n+\n \treturn (\n \t\t<form class=\"guess-input-wrapper\">\n \t\t\t<label for=\"guess-input\">Enter guess:</label>\n-\t\t\t<input id=\"guess-input\" type=\"text\" />\n+\t\t\t<input id=\"guess-input\" type=\"text\" value={answer} onChange={} />\n \t\t</form>\n \t);\n }\n \n"
+                },
+                {
+                    "date": 1687069768976,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,17 +2,22 @@\n \n function AnswerInput() {\n \tconst [answer, setAnswer] = useState();\n \n-  const handleAnswerChange = (answer) => {\n-    setAnswer(answer);\n-    console.log(answer)\n-  }\n+\tconst handleAnswerChange = (answer) => {\n+\t\tsetAnswer(answer);\n+\t\tconsole.log(answer);\n+\t};\n \n \treturn (\n \t\t<form class=\"guess-input-wrapper\">\n \t\t\t<label for=\"guess-input\">Enter guess:</label>\n-\t\t\t<input id=\"guess-input\" type=\"text\" value={answer} onChange={} />\n+\t\t\t<input\n+\t\t\t\tid=\"guess-input\"\n+\t\t\t\ttype=\"text\"\n+\t\t\t\tvalue={answer}\n+\t\t\t\tonChange={(e) => handleAnswerChange(e.target.value)}\n+\t\t\t/>\n \t\t</form>\n \t);\n }\n \n"
+                },
+                {
+                    "date": 1687069790977,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n \tconst [answer, setAnswer] = useState();\n \n \tconst handleAnswerChange = (answer) => {\n \t\tsetAnswer(answer);\n-\t\tconsole.log(answer);\n+\t\tconsole.log('Answer: ', answer);\n \t};\n \n \treturn (\n \t\t<form class=\"guess-input-wrapper\">\n"
+                },
+                {
+                    "date": 1687069857886,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,13 @@\n \t\tsetAnswer(answer);\n \t\tconsole.log('Answer: ', answer);\n \t};\n \n+\tconst handleAnserSubmit = (answer) => {\n+\t\tconsole.log('Subitted: ', answer);\n+\t\tsetAnswer('');\n+\t};\n+\n \treturn (\n \t\t<form class=\"guess-input-wrapper\">\n \t\t\t<label for=\"guess-input\">Enter guess:</label>\n \t\t\t<input\n"
+                },
+                {
+                    "date": 1687069896995,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,10 @@\n \t\tsetAnswer(answer);\n \t\tconsole.log('Answer: ', answer);\n \t};\n \n-\tconst handleAnserSubmit = (answer) => {\n+\tconst handleAnserSubmit = (event) => {\n+\t\tevent.preventDefault();\n \t\tconsole.log('Subitted: ', answer);\n \t\tsetAnswer('');\n \t};\n \n"
+                },
+                {
+                    "date": 1687069907036,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n \t};\n \n \tconst handleAnserSubmit = (event) => {\n \t\tevent.preventDefault();\n-\t\tconsole.log('Subitted: ', answer);\n+\t\tconsole.log('Submitted: ', answer);\n \t\tsetAnswer('');\n \t};\n \n \treturn (\n"
+                },
+                {
+                    "date": 1687069916871,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n \t\tsetAnswer('');\n \t};\n \n \treturn (\n-\t\t<form class=\"guess-input-wrapper\">\n+\t\t<form class=\"guess-input-wrapper\" onSubmit={handleAnserSubmit}>\n \t\t\t<label for=\"guess-input\">Enter guess:</label>\n \t\t\t<input\n \t\t\t\tid=\"guess-input\"\n \t\t\t\ttype=\"text\"\n"
+                },
+                {
+                    "date": 1687069926739,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,16 +7,16 @@\n \t\tsetAnswer(answer);\n \t\tconsole.log('Answer: ', answer);\n \t};\n \n-\tconst handleAnserSubmit = (event) => {\n+\tconst handleAnswerSubmit = (event) => {\n \t\tevent.preventDefault();\n \t\tconsole.log('Submitted: ', answer);\n \t\tsetAnswer('');\n \t};\n \n \treturn (\n-\t\t<form class=\"guess-input-wrapper\" onSubmit={handleAnserSubmit}>\n+\t\t<form class=\"guess-input-wrapper\" onSubmit={handleAnswerSubmit}>\n \t\t\t<label for=\"guess-input\">Enter guess:</label>\n \t\t\t<input\n \t\t\t\tid=\"guess-input\"\n \t\t\t\ttype=\"text\"\n"
+                },
+                {
+                    "date": 1687070446493,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,8 +21,10 @@\n \t\t\t\tid=\"guess-input\"\n \t\t\t\ttype=\"text\"\n \t\t\t\tvalue={answer}\n \t\t\t\tonChange={(e) => handleAnswerChange(e.target.value)}\n+\t\t\t\tminLength={5}\n+\t\t\t\tmaxLength={5}\n \t\t\t/>\n \t\t</form>\n \t);\n }\n"
+                },
+                {
+                    "date": 1687070510518,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,8 +23,9 @@\n \t\t\t\tvalue={answer}\n \t\t\t\tonChange={(e) => handleAnswerChange(e.target.value)}\n \t\t\t\tminLength={5}\n \t\t\t\tmaxLength={5}\n+        style={{fontStyle:}}\n \t\t\t/>\n \t\t</form>\n \t);\n }\n"
+                },
+                {
+                    "date": 1687071106468,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n \t\t\t\tvalue={answer}\n \t\t\t\tonChange={(e) => handleAnswerChange(e.target.value)}\n \t\t\t\tminLength={5}\n \t\t\t\tmaxLength={5}\n-        style={{fontStyle:}}\n+\t\t\t\tstyle={{ textTransform: 'uppercase' }}\n \t\t\t/>\n \t\t</form>\n \t);\n }\n"
+                },
+                {
+                    "date": 1687072577797,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,8 @@\n \tconst [answer, setAnswer] = useState();\n \n \tconst handleAnswerChange = (answer) => {\n \t\tsetAnswer(answer);\n-\t\tconsole.log('Answer: ', answer);\n \t};\n \n \tconst handleAnswerSubmit = (event) => {\n \t\tevent.preventDefault();\n"
+                },
+                {
+                    "date": 1687072616274,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import React, { useState } from 'react';\n \n-function AnswerInput() {\n+function AnswerInput({ setAnsers }) {\n \tconst [answer, setAnswer] = useState();\n \n \tconst handleAnswerChange = (answer) => {\n \t\tsetAnswer(answer);\n"
+                },
+                {
+                    "date": 1687072628373,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import React, { useState } from 'react';\n \n-function AnswerInput({ setAnsers }) {\n+function AnswerInput({ addAnswer }) {\n \tconst [answer, setAnswer] = useState();\n \n \tconst handleAnswerChange = (answer) => {\n \t\tsetAnswer(answer);\n"
+                },
+                {
+                    "date": 1687072680264,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import React, { useState } from 'react';\n \n-function AnswerInput({ addAnswer }) {\n+function AnswerInput({ addGuess }) {\n \tconst [answer, setAnswer] = useState();\n \n \tconst handleAnswerChange = (answer) => {\n \t\tsetAnswer(answer);\n@@ -9,8 +9,9 @@\n \n \tconst handleAnswerSubmit = (event) => {\n \t\tevent.preventDefault();\n \t\tconsole.log('Submitted: ', answer);\n+\t\taddGuess(answer);\n \t\tsetAnswer('');\n \t};\n \n \treturn (\n"
+                },
+                {
+                    "date": 1687072849300,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n \t};\n \n \treturn (\n \t\t<form class=\"guess-input-wrapper\" onSubmit={handleAnswerSubmit}>\n-\t\t\t<label for=\"guess-input\">Enter guess:</label>\n+\t\t\t<label htmlFor=\"guess-input\">Enter guess:</label>\n \t\t\t<input\n \t\t\t\tid=\"guess-input\"\n \t\t\t\ttype=\"text\"\n \t\t\t\tvalue={answer}\n"
+                },
+                {
+                    "date": 1687072863384,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n \t\tsetAnswer('');\n \t};\n \n \treturn (\n-\t\t<form class=\"guess-input-wrapper\" onSubmit={handleAnswerSubmit}>\n+\t\t<form className=\"guess-input-wrapper\" onSubmit={handleAnswerSubmit}>\n \t\t\t<label htmlFor=\"guess-input\">Enter guess:</label>\n \t\t\t<input\n \t\t\t\tid=\"guess-input\"\n \t\t\t\ttype=\"text\"\n"
+                },
+                {
+                    "date": 1687073779472,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,33 @@\n+import React, { useState } from 'react';\n+\n+function AnswerInput({ addGuess }) {\n+\tconst [answer, setAnswer] = useState();\n+\n+\tconst handleAnswerChange = (answer) => {\n+\t\tsetAnswer(answer);\n+\t};\n+\n+\tconst handleAnswerSubmit = (event) => {\n+\t\tevent.preventDefault();\n+\t\tconsole.log('Submitted: ', answer);\n+\t\taddGuess(answer);\n+\t\tsetAnswer('');\n+\t};\n+\n+\treturn (\n+\t\t<form className=\"guess-input-wrapper\" onSubmit={handleAnswerSubmit}>\n+\t\t\t<label htmlFor=\"guess-input\">Enter guess:</label>\n+\t\t\t<input\n+\t\t\t\tid=\"guess-input\"\n+\t\t\t\ttype=\"text\"\n+\t\t\t\tvalue={answer}\n+\t\t\t\tonChange={(e) => handleAnswerChange()}\n+\t\t\t\tminLength={5}\n+\t\t\t\tmaxLength={5}\n+\t\t\t\tstyle={{ textTransform: 'uppercase' }}\n+\t\t\t/>\n+\t\t</form>\n+\t);\n+}\n+\n+export default AnswerInput;\n"
+                },
+                {
+                    "date": 1687073842459,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n \t\t\t<input\n \t\t\t\tid=\"guess-input\"\n \t\t\t\ttype=\"text\"\n \t\t\t\tvalue={answer}\n-\t\t\t\tonChange={(e) => handleAnswerChange()}\n+\t\t\t\tonChange={(e) => handleAnswerChange(e)}\n \t\t\t\tminLength={5}\n \t\t\t\tmaxLength={5}\n \t\t\t\tstyle={{ textTransform: 'uppercase' }}\n \t\t\t/>\n@@ -30,37 +30,4 @@\n \t);\n }\n \n export default AnswerInput;\n-import React, { useState } from 'react';\n-\n-function AnswerInput({ addGuess }) {\n-\tconst [answer, setAnswer] = useState();\n-\n-\tconst handleAnswerChange = (answer) => {\n-\t\tsetAnswer(answer);\n-\t};\n-\n-\tconst handleAnswerSubmit = (event) => {\n-\t\tevent.preventDefault();\n-\t\tconsole.log('Submitted: ', answer);\n-\t\taddGuess(answer);\n-\t\tsetAnswer('');\n-\t};\n-\n-\treturn (\n-\t\t<form className=\"guess-input-wrapper\" onSubmit={handleAnswerSubmit}>\n-\t\t\t<label htmlFor=\"guess-input\">Enter guess:</label>\n-\t\t\t<input\n-\t\t\t\tid=\"guess-input\"\n-\t\t\t\ttype=\"text\"\n-\t\t\t\tvalue={answer}\n-\t\t\t\tonChange={(e) => handleAnswerChange(e.target.value)}\n-\t\t\t\tminLength={5}\n-\t\t\t\tmaxLength={5}\n-\t\t\t\tstyle={{ textTransform: 'uppercase' }}\n-\t\t\t/>\n-\t\t</form>\n-\t);\n-}\n-\n-export default AnswerInput;\n"
+                },
+                {
+                    "date": 1687073990216,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n \t\t\t<input\n \t\t\t\tid=\"guess-input\"\n \t\t\t\ttype=\"text\"\n \t\t\t\tvalue={answer}\n-\t\t\t\tonChange={(e) => handleAnswerChange(e)}\n+\t\t\t\tonChange={(e) => handleAnswerChange(e.target.value)}\n \t\t\t\tminLength={5}\n \t\t\t\tmaxLength={5}\n \t\t\t\tstyle={{ textTransform: 'uppercase' }}\n \t\t\t/>\n"
+                },
+                {
+                    "date": 1687074082128,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import React, { useState } from 'react';\n \n function AnswerInput({ addGuess }) {\n-\tconst [answer, setAnswer] = useState();\n+\tconst [answer, setAnswer] = useState('');\n \n \tconst handleAnswerChange = (answer) => {\n \t\tsetAnswer(answer);\n \t};\n"
+                }
+            ],
+            "date": 1687069071474,
+            "name": "Commit-0",
+            "content": "import React from 'react';\n\nfunction AnswerInput() {\n\treturn (\n\t\t<form class=\"guess-input-wrapper\">\n\t\t\t<label for=\"guess-input\">Enter guess:</label>\n\t\t\t<input id=\"guess-input\" type=\"text\" />\n\t\t</form>\n\t);\n}\n\nexport default AnswerInput;\n"
+        }
+    ]
+}

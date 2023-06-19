@@ -219,6 +219,10 @@ h1 {
   margin-bottom: 0.5em;
 }
 
+.uppercase {
+  text-transform: uppercase;
+}
+
 /*
   Keyframe animations
 */

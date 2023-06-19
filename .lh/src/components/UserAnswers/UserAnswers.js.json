@@ -1,0 +1,118 @@
+{
+    "sourceFile": "src/components/UserAnswers/UserAnswers.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 25,
+            "patches": [
+                {
+                    "date": 1687071659748,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1687071926190,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,9 @@\n-import React from 'react';\n+import React, { useState } from 'react';\n \n function UserAnswers() {\n+\tconst [answers, setAnswers] = useState([]);\n+\n \treturn (\n \t\t<div class=\"guess-results\">\n \t\t\t<p class=\"guess\">FIRST</p>\n \t\t\t<p class=\"guess\">GUESS</p>\n"
+                },
+                {
+                    "date": 1687071937386,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,12 @@\n+import React, { useState } from 'react';\n+\n+function UserAnswers() {\n+\treturn (\n+\t\t<div class=\"guess-results\">\n+\t\t\t<p class=\"guess\">FIRST</p>\n+\t\t\t<p class=\"guess\">GUESS</p>\n+\t\t</div>\n+\t);\n+}\n+\n+export default UserAnswers;\n"
+                },
+                {
+                    "date": 1687072277330,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,26 +1,13 @@\n import React, { useState } from 'react';\n \n-function UserAnswers() {\n+function UserAnswers({ answers }) {\n \treturn (\n \t\t<div class=\"guess-results\">\n-\t\t\t<p class=\"guess\">FIRST</p>\n-\t\t\t<p class=\"guess\">GUESS</p>\n+\t\t\t{answers.map((userAnswer) => {\n+\t\t\t\t<p class=\"guess\">{userAnswer.label}</p>;\n+\t\t\t})}\n \t\t</div>\n \t);\n }\n \n export default UserAnswers;\n-import React, { useState } from 'react';\n-\n-function UserAnswers() {\n-\tconst [answers, setAnswers] = useState([]);\n-\n-\treturn (\n-\t\t<div class=\"guess-results\">\n-\t\t\t<p class=\"guess\">FIRST</p>\n-\t\t\t<p class=\"guess\">GUESS</p>\n-\t\t</div>\n-\t);\n-}\n-\n-export default UserAnswers;\n"
+                },
+                {
+                    "date": 1687072522276,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,11 @@\n function UserAnswers({ answers }) {\n \treturn (\n \t\t<div class=\"guess-results\">\n \t\t\t{answers.map((userAnswer) => {\n-\t\t\t\t<p class=\"guess\">{userAnswer.label}</p>;\n+\t\t\t\t<p class=\"guess\" key={userAnswer.id}>\n+\t\t\t\t\t{userAnswer.label}\n+\t\t\t\t</p>;\n \t\t\t})}\n \t\t</div>\n \t);\n }\n"
+                },
+                {
+                    "date": 1687072532537,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,10 +3,10 @@\n function UserAnswers({ answers }) {\n \treturn (\n \t\t<div class=\"guess-results\">\n \t\t\t{answers.map((userAnswer) => {\n-\t\t\t\t<p class=\"guess\" key={userAnswer.id}>\n-\t\t\t\t\t{userAnswer.label}\n+\t\t\t\t<p class=\"guess\" key={userAnswer?.id}>\n+\t\t\t\t\t{userAnswer?.label}\n \t\t\t\t</p>;\n \t\t\t})}\n \t\t</div>\n \t);\n"
+                },
+                {
+                    "date": 1687072551925,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n \n function UserAnswers({ answers }) {\n \treturn (\n \t\t<div class=\"guess-results\">\n-\t\t\t{answers.map((userAnswer) => {\n+\t\t\t{answers?.map((userAnswer) => {\n \t\t\t\t<p class=\"guess\" key={userAnswer?.id}>\n \t\t\t\t\t{userAnswer?.label}\n \t\t\t\t</p>;\n \t\t\t})}\n"
+                },
+                {
+                    "date": 1687072876816,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n function UserAnswers({ answers }) {\n \treturn (\n \t\t<div class=\"guess-results\">\n \t\t\t{answers?.map((userAnswer) => {\n-\t\t\t\t<p class=\"guess\" key={userAnswer?.id}>\n+\t\t\t\t<p className=\"guess\" key={userAnswer?.id}>\n \t\t\t\t\t{userAnswer?.label}\n \t\t\t\t</p>;\n \t\t\t})}\n \t\t</div>\n"
+                },
+                {
+                    "date": 1687072882730,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import React, { useState } from 'react';\n \n function UserAnswers({ answers }) {\n \treturn (\n-\t\t<div class=\"guess-results\">\n+\t\t<div className=\"guess-results\">\n \t\t\t{answers?.map((userAnswer) => {\n \t\t\t\t<p className=\"guess\" key={userAnswer?.id}>\n \t\t\t\t\t{userAnswer?.label}\n \t\t\t\t</p>;\n"
+                },
+                {
+                    "date": 1687072918856,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,9 @@\n import React, { useState } from 'react';\n \n function UserAnswers({ answers }) {\n+\tconsole.log('Answers to display: ', answers);\n+\n \treturn (\n \t\t<div className=\"guess-results\">\n \t\t\t{answers?.map((userAnswer) => {\n \t\t\t\t<p className=\"guess\" key={userAnswer?.id}>\n"
+                },
+                {
+                    "date": 1687072998571,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,12 @@\n import React, { useState } from 'react';\n \n-function UserAnswers({ answers }) {\n-\tconsole.log('Answers to display: ', answers);\n+function UserAnswers({ guesses }) {\n+\tconsole.log('Answers to display: ', guesses);\n \n \treturn (\n \t\t<div className=\"guess-results\">\n-\t\t\t{answers?.map((userAnswer) => {\n+\t\t\t{guesses?.map((userAnswer) => {\n \t\t\t\t<p className=\"guess\" key={userAnswer?.id}>\n \t\t\t\t\t{userAnswer?.label}\n \t\t\t\t</p>;\n \t\t\t})}\n"
+                },
+                {
+                    "date": 1687073928186,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,12 @@\n \n function UserAnswers({ guesses }) {\n \tconsole.log('Answers to display: ', guesses);\n \n+\tconst GUESS = [\n+\t\t{ id: 123, label: 'One' },\n+\t\t{ id: 234, label: 'Two' },\n+\t];\n \treturn (\n \t\t<div className=\"guess-results\">\n \t\t\t{guesses?.map((userAnswer) => {\n \t\t\t\t<p className=\"guess\" key={userAnswer?.id}>\n"
+                },
+                {
+                    "date": 1687073949192,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,12 +8,14 @@\n \t\t{ id: 234, label: 'Two' },\n \t];\n \treturn (\n \t\t<div className=\"guess-results\">\n-\t\t\t{guesses?.map((userAnswer) => {\n-\t\t\t\t<p className=\"guess\" key={userAnswer?.id}>\n-\t\t\t\t\t{userAnswer?.label}\n-\t\t\t\t</p>;\n+\t\t\t{GUESS?.map((userAnswer) => {\n+\t\t\t\treturn (\n+\t\t\t\t\t<p className=\"guess\" key={userAnswer?.id}>\n+\t\t\t\t\t\t{userAnswer?.label}\n+\t\t\t\t\t</p>\n+\t\t\t\t);\n \t\t\t})}\n \t\t</div>\n \t);\n }\n"
+                },
+                {
+                    "date": 1687073959385,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,15 +2,11 @@\n \n function UserAnswers({ guesses }) {\n \tconsole.log('Answers to display: ', guesses);\n \n-\tconst GUESS = [\n-\t\t{ id: 123, label: 'One' },\n-\t\t{ id: 234, label: 'Two' },\n-\t];\n \treturn (\n \t\t<div className=\"guess-results\">\n-\t\t\t{GUESS?.map((userAnswer) => {\n+\t\t\t{guesses?.map((userAnswer) => {\n \t\t\t\treturn (\n \t\t\t\t\t<p className=\"guess\" key={userAnswer?.id}>\n \t\t\t\t\t\t{userAnswer?.label}\n \t\t\t\t\t</p>\n"
+                },
+                {
+                    "date": 1687074151871,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n \treturn (\n \t\t<div className=\"guess-results\">\n \t\t\t{guesses?.map((userAnswer) => {\n \t\t\t\treturn (\n-\t\t\t\t\t<p className=\"guess\" key={userAnswer?.id}>\n+\t\t\t\t\t<p className=\"guess uppercase\" key={userAnswer?.id}>\n \t\t\t\t\t\t{userAnswer?.label}\n \t\t\t\t\t</p>\n \t\t\t\t);\n \t\t\t})}\n"
+                },
+                {
+                    "date": 1687074736601,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,10 +6,19 @@\n \treturn (\n \t\t<div className=\"guess-results\">\n \t\t\t{guesses?.map((userAnswer) => {\n \t\t\t\treturn (\n+\n+          <div class=\"guess-results\">\n+  <p class=\"guess\">\n+        {userAnswer?.label.map((letter) => {\n+\n+          <span class=\"cell\">{letter}</span>\n+        })}\n+  </p>\n+\n \t\t\t\t\t<p className=\"guess uppercase\" key={userAnswer?.id}>\n-\t\t\t\t\t\t{userAnswer?.label}\n+\n \t\t\t\t\t</p>\n \t\t\t\t);\n \t\t\t})}\n \t\t</div>\n"
+                },
+                {
+                    "date": 1687074795126,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,17 +8,16 @@\n \t\t\t{guesses?.map((userAnswer) => {\n \t\t\t\treturn (\n \n           <div class=\"guess-results\">\n-  <p class=\"guess\">\n-        {userAnswer?.label.map((letter) => {\n+            <p class=\"guess\">\n+                  {userAnswer?.label.map((letter) => {\n+                    <span class=\"cell\" key={`${userAnswer?.id}-${letter}`}>{letter}</span>\n+                  })}\n+            </p>\n \n-          <span class=\"cell\">{letter}</span>\n-        })}\n-  </p>\n+\t\t\t\t\t<p className=\"guess uppercase\" >\n \n-\t\t\t\t\t<p className=\"guess uppercase\" key={userAnswer?.id}>\n-\n \t\t\t\t\t</p>\n \t\t\t\t);\n \t\t\t})}\n \t\t</div>\n"
+                },
+                {
+                    "date": 1687074827217,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,17 +8,15 @@\n \t\t\t{guesses?.map((userAnswer) => {\n \t\t\t\treturn (\n \n           <div class=\"guess-results\">\n-            <p class=\"guess\">\n+            <p class=\"guess uppercase\">\n                   {userAnswer?.label.map((letter) => {\n                     <span class=\"cell\" key={`${userAnswer?.id}-${letter}`}>{letter}</span>\n                   })}\n             </p>\n \n-\t\t\t\t\t<p className=\"guess uppercase\" >\n \n-\t\t\t\t\t</p>\n \t\t\t\t);\n \t\t\t})}\n \t\t</div>\n \t);\n"
+                },
+                {
+                    "date": 1687074966607,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,17 +6,17 @@\n \treturn (\n \t\t<div className=\"guess-results\">\n \t\t\t{guesses?.map((userAnswer) => {\n \t\t\t\treturn (\n-\n-          <div class=\"guess-results\">\n-            <p class=\"guess uppercase\">\n-                  {userAnswer?.label.map((letter) => {\n-                    <span class=\"cell\" key={`${userAnswer?.id}-${letter}`}>{letter}</span>\n-                  })}\n-            </p>\n-\n-\n+\t\t\t\t\t<div class=\"guess-results\">\n+\t\t\t\t\t\t<p class=\"guess uppercase\">\n+\t\t\t\t\t\t\t{userAnswer?.label.map((letter) => {\n+\t\t\t\t\t\t\t\t<span class=\"cell\" key={`${userAnswer?.id}-${letter}`}>\n+\t\t\t\t\t\t\t\t\t{letter}\n+\t\t\t\t\t\t\t\t</span>;\n+\t\t\t\t\t\t\t})}\n+\t\t\t\t\t\t</p>\n+\t\t\t\t\t</div>\n \t\t\t\t);\n \t\t\t})}\n \t\t</div>\n \t);\n"
+                },
+                {
+                    "date": 1687074973363,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n \t\t\t{guesses?.map((userAnswer) => {\n \t\t\t\treturn (\n \t\t\t\t\t<div class=\"guess-results\">\n \t\t\t\t\t\t<p class=\"guess uppercase\">\n-\t\t\t\t\t\t\t{userAnswer?.label.map((letter) => {\n+\t\t\t\t\t\t\t{userAnswer?.label?.map((letter) => {\n \t\t\t\t\t\t\t\t<span class=\"cell\" key={`${userAnswer?.id}-${letter}`}>\n \t\t\t\t\t\t\t\t\t{letter}\n \t\t\t\t\t\t\t\t</span>;\n \t\t\t\t\t\t\t})}\n"
+                },
+                {
+                    "date": 1687075031650,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,9 @@\n \t\t\t\treturn (\n \t\t\t\t\t<div class=\"guess-results\">\n \t\t\t\t\t\t<p class=\"guess uppercase\">\n \t\t\t\t\t\t\t{userAnswer?.label?.map((letter) => {\n+                console.log('Letter: ', letter)\n \t\t\t\t\t\t\t\t<span class=\"cell\" key={`${userAnswer?.id}-${letter}`}>\n \t\t\t\t\t\t\t\t\t{letter}\n \t\t\t\t\t\t\t\t</span>;\n \t\t\t\t\t\t\t})}\n"
+                },
+                {
+                    "date": 1687075055554,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,12 +9,15 @@\n \t\t\t\treturn (\n \t\t\t\t\t<div class=\"guess-results\">\n \t\t\t\t\t\t<p class=\"guess uppercase\">\n \t\t\t\t\t\t\t{userAnswer?.label?.map((letter) => {\n-                console.log('Letter: ', letter)\n-\t\t\t\t\t\t\t\t<span class=\"cell\" key={`${userAnswer?.id}-${letter}`}>\n+                console.log('Letter: ', letter);\n+                return (\n+\n+                  <span class=\"cell\" key={`${userAnswer?.id}-${letter}`}>\n \t\t\t\t\t\t\t\t\t{letter}\n \t\t\t\t\t\t\t\t</span>;\n+                  )\n \t\t\t\t\t\t\t})}\n \t\t\t\t\t\t</p>\n \t\t\t\t\t</div>\n \t\t\t\t);\n"
+                },
+                {
+                    "date": 1687075114378,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,28 @@\n+import React, { useState } from 'react';\n+\n+function UserAnswers({ guesses }) {\n+\tconsole.log('Answers to display: ', guesses);\n+\n+\treturn (\n+\t\t<div className=\"guess-results\">\n+\t\t\t{guesses?.map((userAnswer) => {\n+\t\t\t\treturn (\n+\t\t\t\t\t<div class=\"guess-results\">\n+\t\t\t\t\t\t<p class=\"guess uppercase\">\n+\t\t\t\t\t\t\t{[...userAnswer?.label]?.map((letter) => {\n+\t\t\t\t\t\t\t\tconsole.log('Letter: ', letter);\n+\t\t\t\t\t\t\t\treturn (\n+\t\t\t\t\t\t\t\t\t<span class=\"cell\" key={`${userAnswer?.id}-${letter}`}>\n+\t\t\t\t\t\t\t\t\t\t{letter}\n+\t\t\t\t\t\t\t\t\t</span>\n+\t\t\t\t\t\t\t\t);\n+\t\t\t\t\t\t\t})}\n+\t\t\t\t\t\t</p>\n+\t\t\t\t\t</div>\n+\t\t\t\t);\n+\t\t\t})}\n+\t\t</div>\n+\t);\n+}\n+\n+export default UserAnswers;\n"
+                },
+                {
+                    "date": 1687075147529,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,12 @@\n \t\t\t\t\t\t<p class=\"guess uppercase\">\n \t\t\t\t\t\t\t{[...userAnswer?.label]?.map((letter) => {\n \t\t\t\t\t\t\t\tconsole.log('Letter: ', letter);\n \t\t\t\t\t\t\t\treturn (\n-\t\t\t\t\t\t\t\t\t<span class=\"cell\" key={`${userAnswer?.id}-${letter}`}>\n+\t\t\t\t\t\t\t\t\t<span\n+\t\t\t\t\t\t\t\t\t\tclass=\"cell\"\n+\t\t\t\t\t\t\t\t\t\tkey={`${userAnswer?.id}-${crypto.randomUUID()}`}\n+\t\t\t\t\t\t\t\t\t>\n \t\t\t\t\t\t\t\t\t\t{letter}\n \t\t\t\t\t\t\t\t\t</span>\n \t\t\t\t\t\t\t\t);\n \t\t\t\t\t\t\t})}\n@@ -25,33 +28,4 @@\n \t);\n }\n \n export default UserAnswers;\n-import React, { useState } from 'react';\n-\n-function UserAnswers({ guesses }) {\n-\tconsole.log('Answers to display: ', guesses);\n-\n-\treturn (\n-\t\t<div className=\"guess-results\">\n-\t\t\t{guesses?.map((userAnswer) => {\n-\t\t\t\treturn (\n-\t\t\t\t\t<div class=\"guess-results\">\n-\t\t\t\t\t\t<p class=\"guess uppercase\">\n-\t\t\t\t\t\t\t{userAnswer?.label?.map((letter) => {\n-                console.log('Letter: ', letter);\n-                return (\n-\n-                  <span class=\"cell\" key={`${userAnswer?.id}-${letter}`}>\n-\t\t\t\t\t\t\t\t\t{letter}\n-\t\t\t\t\t\t\t\t</span>;\n-                  )\n-\t\t\t\t\t\t\t})}\n-\t\t\t\t\t\t</p>\n-\t\t\t\t\t</div>\n-\t\t\t\t);\n-\t\t\t})}\n-\t\t</div>\n-\t);\n-}\n-\n-export default UserAnswers;\n"
+                },
+                {
+                    "date": 1687075167013,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,15 +6,15 @@\n \treturn (\n \t\t<div className=\"guess-results\">\n \t\t\t{guesses?.map((userAnswer) => {\n \t\t\t\treturn (\n-\t\t\t\t\t<div class=\"guess-results\">\n-\t\t\t\t\t\t<p class=\"guess uppercase\">\n+\t\t\t\t\t<div className=\"guess-results\">\n+\t\t\t\t\t\t<p className=\"guess uppercase\">\n \t\t\t\t\t\t\t{[...userAnswer?.label]?.map((letter) => {\n \t\t\t\t\t\t\t\tconsole.log('Letter: ', letter);\n \t\t\t\t\t\t\t\treturn (\n \t\t\t\t\t\t\t\t\t<span\n-\t\t\t\t\t\t\t\t\t\tclass=\"cell\"\n+\t\t\t\t\t\t\t\t\t\tclassName=\"cell\"\n \t\t\t\t\t\t\t\t\t\tkey={`${userAnswer?.id}-${crypto.randomUUID()}`}\n \t\t\t\t\t\t\t\t\t>\n \t\t\t\t\t\t\t\t\t\t{letter}\n \t\t\t\t\t\t\t\t\t</span>\n"
+                },
+                {
+                    "date": 1687075204367,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n \treturn (\n \t\t<div className=\"guess-results\">\n \t\t\t{guesses?.map((userAnswer) => {\n \t\t\t\treturn (\n-\t\t\t\t\t<div className=\"guess-results\">\n+\t\t\t\t\t<div className=\"guess-results\" key={userAnswer?.id}>\n \t\t\t\t\t\t<p className=\"guess uppercase\">\n \t\t\t\t\t\t\t{[...userAnswer?.label]?.map((letter) => {\n \t\t\t\t\t\t\t\tconsole.log('Letter: ', letter);\n \t\t\t\t\t\t\t\treturn (\n"
+                }
+            ],
+            "date": 1687071659748,
+            "name": "Commit-0",
+            "content": "import React from 'react';\n\nfunction UserAnswers() {\n\treturn (\n\t\t<div class=\"guess-results\">\n\t\t\t<p class=\"guess\">FIRST</p>\n\t\t\t<p class=\"guess\">GUESS</p>\n\t\t</div>\n\t);\n}\n\nexport default UserAnswers;\n"
+        }
+    ]
+}

@@ -1,0 +1,70 @@
+{
+    "sourceFile": "src/components/Game/Game.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 13,
+            "patches": [
+                {
+                    "date": 1687069042404,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1687069636112,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n // To make debugging easier, we'll log the solution in the console.\n console.info({ answer });\n \n function Game() {\n-  return <>Put a game here!</>;\n-  <AnswerInput />;\n+  return (<>Put a game here!</>;\n+  <AnswerInput />);\n }\n \n export default Game;\n"
+                },
+                {
+                    "date": 1687069649144,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,13 @@\n // To make debugging easier, we'll log the solution in the console.\n console.info({ answer });\n \n function Game() {\n-  return (<>Put a game here!</>;\n-  <AnswerInput />);\n+  return (\n+\t\t<>\n+\t\t\tPut a game here!\n+\t\t\t<AnswerInput />\n+\t\t</>\n+\t);\n }\n \n export default Game;\n"
+                },
+                {
+                    "date": 1687071954207,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,18 +2,21 @@\n \n import { sample } from '../../utils';\n import { WORDS } from '../../data';\n import AnswerInput from '../AnswerInput/AnswerInput';\n+import UserAnswers from '../UserAnswers/UserAnswers';\n \n // Pick a random word on every pageload.\n const answer = sample(WORDS);\n // To make debugging easier, we'll log the solution in the console.\n console.info({ answer });\n \n function Game() {\n-  return (\n+  const [answers, setAnswers] = useState([]);\n+\n+\treturn (\n \t\t<>\n-\t\t\tPut a game here!\n+\t\t\t<UserAnswers />\n \t\t\t<AnswerInput />\n \t\t</>\n \t);\n }\n"
+                },
+                {
+                    "date": 1687072015799,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,8 +12,13 @@\n \n function Game() {\n   const [answers, setAnswers] = useState([]);\n \n+\tconst addAnswer = (answer) => {\n+\t\tconst newAnswers = [...answers, answer];\n+\t\tsetAnswers(newAnswers);\n+\t};\n+\n \treturn (\n \t\t<>\n \t\t\t<UserAnswers />\n \t\t\t<AnswerInput />\n"
+                },
+                {
+                    "date": 1687072023177,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n // To make debugging easier, we'll log the solution in the console.\n console.info({ answer });\n \n function Game() {\n-  const [answers, setAnswers] = useState([]);\n+\tconst [answers, setAnswers] = useState([]);\n \n \tconst addAnswer = (answer) => {\n \t\tconst newAnswers = [...answers, answer];\n \t\tsetAnswers(newAnswers);\n@@ -20,9 +20,9 @@\n \n \treturn (\n \t\t<>\n \t\t\t<UserAnswers />\n-\t\t\t<AnswerInput />\n+\t\t\t<AnswerInput addAnswer={addAnswer} />\n \t\t</>\n \t);\n }\n \n"
+                },
+                {
+                    "date": 1687072037115,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import React from 'react';\n+import React, { useState } from 'react';\n \n import { sample } from '../../utils';\n import { WORDS } from '../../data';\n import AnswerInput from '../AnswerInput/AnswerInput';\n"
+                },
+                {
+                    "date": 1687072305632,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n function Game() {\n \tconst [answers, setAnswers] = useState([]);\n \n \tconst addAnswer = (answer) => {\n-\t\tconst newAnswers = [...answers, answer];\n+\t\tconst newAnswers = [...answers, { label: answer, id: crypto.randomUUID() }];\n \t\tsetAnswers(newAnswers);\n \t};\n \n \treturn (\n"
+                },
+                {
+                    "date": 1687072665845,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,19 +10,19 @@\n // To make debugging easier, we'll log the solution in the console.\n console.info({ answer });\n \n function Game() {\n-\tconst [answers, setAnswers] = useState([]);\n+\tconst [gueses, setGueses] = useState([]);\n \n-\tconst addAnswer = (answer) => {\n-\t\tconst newAnswers = [...answers, { label: answer, id: crypto.randomUUID() }];\n-\t\tsetAnswers(newAnswers);\n+\tconst addGuess = (answer) => {\n+\t\tconst newGueses = [...gueses, { label: answer, id: crypto.randomUUID() }];\n+\t\tsetGueses(newGueses);\n \t};\n \n \treturn (\n \t\t<>\n \t\t\t<UserAnswers />\n-\t\t\t<AnswerInput addAnswer={addAnswer} />\n+\t\t\t<AnswerInput addGuess={addGuess} />\n \t\t</>\n \t);\n }\n \n"
+                },
+                {
+                    "date": 1687072748789,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,10 +12,10 @@\n \n function Game() {\n \tconst [gueses, setGueses] = useState([]);\n \n-\tconst addGuess = (answer) => {\n-\t\tconst newGueses = [...gueses, { label: answer, id: crypto.randomUUID() }];\n+\tconst addGuess = (guess) => {\n+\t\tconst newGueses = [...gueses, { label: guess, id: crypto.randomUUID() }];\n \t\tsetGueses(newGueses);\n \t};\n \n \treturn (\n"
+                },
+                {
+                    "date": 1687072779261,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,13 +10,13 @@\n // To make debugging easier, we'll log the solution in the console.\n console.info({ answer });\n \n function Game() {\n-\tconst [gueses, setGueses] = useState([]);\n+\tconst [guesses, setGuesses] = useState([]);\n \n \tconst addGuess = (guess) => {\n-\t\tconst newGueses = [...gueses, { label: guess, id: crypto.randomUUID() }];\n-\t\tsetGueses(newGueses);\n+\t\tconst newGuesses = [...guesses, { label: guess, id: crypto.randomUUID() }];\n+\t\tsetGuesses(newGuesses);\n \t};\n \n \treturn (\n \t\t<>\n"
+                },
+                {
+                    "date": 1687072810603,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,8 +14,9 @@\n \tconst [guesses, setGuesses] = useState([]);\n \n \tconst addGuess = (guess) => {\n \t\tconst newGuesses = [...guesses, { label: guess, id: crypto.randomUUID() }];\n+\t\tconsole.log('Guesses: ', newGuesses);\n \t\tsetGuesses(newGuesses);\n \t};\n \n \treturn (\n"
+                },
+                {
+                    "date": 1687072948694,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n \n // Pick a random word on every pageload.\n const answer = sample(WORDS);\n // To make debugging easier, we'll log the solution in the console.\n-console.info({ answer });\n+console.info('correct word: ', { answer });\n \n function Game() {\n \tconst [guesses, setGuesses] = useState([]);\n \n"
+                },
+                {
+                    "date": 1687073016334,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n \t};\n \n \treturn (\n \t\t<>\n-\t\t\t<UserAnswers />\n+\t\t\t<UserAnswers guesses={guesses} />\n \t\t\t<AnswerInput addGuess={addGuess} />\n \t\t</>\n \t);\n }\n"
+                }
+            ],
+            "date": 1687069042404,
+            "name": "Commit-0",
+            "content": "import React from 'react';\n\nimport { sample } from '../../utils';\nimport { WORDS } from '../../data';\nimport AnswerInput from '../AnswerInput/AnswerInput';\n\n// Pick a random word on every pageload.\nconst answer = sample(WORDS);\n// To make debugging easier, we'll log the solution in the console.\nconsole.info({ answer });\n\nfunction Game() {\n  return <>Put a game here!</>;\n  <AnswerInput />;\n}\n\nexport default Game;\n"
+        }
+    ]
+}
