@@ -4,27 +4,12 @@ import { range } from '../../utils';
 import Guess from '../Guess/Guess';
 
 function UserGuesses({ guesses }) {
-	const emptyRowsCount = NUM_OF_GUESSES_ALLOWED - guesses?.length;
-	const rows = range(0, emptyRowsCount, 1);
+	const rows = range(0, NUM_OF_GUESSES_ALLOWED, 1);
 
 	return (
 		<div className="guess-results">
-			{guesses?.map((userGuess, index) => {
-				return <Guess userGuess={userGuess} row={index} key={userGuess?.id} />;
-			})}
 			{rows?.map((row, index) => {
-				return (
-					<Guess
-						key={NUM_OF_GUESSES_ALLOWED - index}
-						row={NUM_OF_GUESSES_ALLOWED - index}
-						userGuess={undefined}
-					/>
-					// <p className="guess uppercase" key={row}>
-					// 	{letters.map((letter) => {
-					// 		return <span className="cell" key={`${row}-${letter}`}></span>;
-					// 	})}
-					// </p>
-				);
+				return <Guess userGuess={guesses[index]} key={index} />;
 			})}
 		</div>
 	);

@@ -1,39 +1,32 @@
 import React from 'react';
 import { range } from '../../utils';
+import { NUM_OF_GUESSES_ALLOWED } from '../../constants';
 
-function Guess({ userGuess = undefined, row }) {
-	const letters = userGuess?.letters ?? range(0, 5, 1);
+function Guess({ userGuess = '' }) {
+	const letters = userGuess?.letters;
 
-	if (!!userGuess === false) {
-		return (
-			<div className="guess-row" key={`emptyRow-${row}`}>
-				<p className="guess uppercase">
-					{letters.map((_, index) => {
-						return (
-							<span className="cell" key={`emptyLetter-${row}-${index}`}></span>
-						);
-					})}
-				</p>
-			</div>
-		);
-	} else {
-		return (
-			<div className="guess-row" key={userGuess?.id ?? `row-${row}`}>
-				<p className="guess uppercase">
-					{letters?.map((letterObject) => {
-						return (
-							<span
-								className={`cell ${letterObject.status}`}
-								key={`${letterObject?.id ?? crypto.randomUUID()}`}
-							>
-								{letterObject.letter}
-							</span>
-						);
-					})}
-				</p>
-			</div>
-		);
-	}
+	return (
+		<div className="guess-row">
+			<p className="guess">
+				{range(5).map((letterSlot) => {
+					return (
+						<span
+							className={`cell ${
+								userGuess?.letters
+									? userGuess.letters?.[letterSlot]?.status
+									: ''
+							}`}
+							key={`letter-${letterSlot}-${userGuess[letterSlot]}`}
+						>
+							{userGuess?.letters
+								? userGuess.letters?.[letterSlot].letter
+								: undefined}
+						</span>
+					);
+				})}
+			</p>
+		</div>
+	);
 }
 
 export default Guess;
